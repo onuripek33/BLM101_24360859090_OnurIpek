@@ -26,14 +26,19 @@ def onluktan_onaltiliya(sayi):
     if sayi == 0:
         return "0"
 
-    # 0-15 arası kalanların karşılık geldiği karakterler
+    # BURASI ÖNEMLİ:
+    # İndeksler:     0123456789012345
+    # Değerler:      0123456789ABCDEF
+    # Örnek: Kalan 10 ise 'A', 11 ise 'B' gelir. Büyük harf burada belirlenir.
     hex_harfleri = "0123456789ABCDEF"
+
     hex_string = ""
     gecici_sayi = sayi
 
     while gecici_sayi > 0:
         kalan = gecici_sayi % 16  # 16'ya bölümden kalanı bul
-        hex_string = hex_harfleri[kalan] + hex_string  # İlgili karakteri başa ekle
+        # hex_harfleri stringinden kalana karşılık gelen karakteri al
+        hex_string = hex_harfleri[kalan] + hex_string
         gecici_sayi = gecici_sayi // 16  # Sayıyı 16'ya böl
 
     return hex_string
@@ -49,10 +54,10 @@ def bellek_gorsellestir(ikili_deger):
     bit_uzunlugu = len(ikili_deger)
     gerekli_uzunluk = ((bit_uzunlugu - 1) // 8 + 1) * 8  # En yakın 8'in katını bulur
 
-    # zfill() stringin başına 0 ekler. Bunu manuel de yapabilirdik ama görselleştirme için string metodu uygundur.
+    # zfill() stringin başına 0 ekler.
     formatli_binary = ikili_deger.zfill(gerekli_uzunluk)
 
-    print("\n--- 💾 BELLEK GÖRÜNÜMÜ (RAM) ---")
+    print("\n---  BELLEK GÖRÜNÜMÜ (RAM) ---")
     print(f"Veri Uzunluğu: {gerekli_uzunluk} Bit")
 
     # Kutucukların üst çizgisi
@@ -71,7 +76,7 @@ def bellek_gorsellestir(ikili_deger):
 
 def ana_program():
     print("==========================================")
-    print("🤖 ÇOK FONKSİYONLU TABAN DÖNÜŞTÜRÜCÜ")
+    print(" ÇOK FONKSİYONLU TABAN DÖNÜŞTÜRÜCÜ")
     print("==========================================")
 
     while True:
@@ -92,23 +97,26 @@ def ana_program():
 
             if secim == '1':
                 sonuc = onluktan_ikiliye(sayi)
-                print(f"\n✅ SONUÇ (Binary): {sonuc}")
+                print(f"\n SONUÇ (Binary): {sonuc}")
                 # Bellek görselleştirmesi her durumda binary üzerinden yapılır
                 bellek_gorsellestir(sonuc)
 
             elif secim == '2':
                 sonuc_hex = onluktan_onaltiliya(sayi)
                 sonuc_bin = onluktan_ikiliye(sayi)  # Görselleştirme için yine binary lazım
-                print(f"\n✅ SONUÇ (Hex): {sonuc_hex}")
+
+                # Burada sonuc_hex zaten A, B, C... formatında gelecektir.
+                print(f"\n SONUÇ (Hex): {sonuc_hex}")
                 bellek_gorsellestir(sonuc_bin)
 
             else:
-                print("❌ Hatalı seçim! Lütfen 1 veya 2'yi seçin.")
+                print(" Hatalı seçim! Lütfen 1 veya 2'yi seçin.")
 
         except ValueError:
-            print("❌ Lütfen geçerli bir tam sayı girin!")
+            print(" Lütfen geçerli bir tam sayı girin!")
 
 
 # Programı başlat
 if __name__ == "__main__":
     ana_program()
+
