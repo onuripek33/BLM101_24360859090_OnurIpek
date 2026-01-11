@@ -2,7 +2,7 @@
 
 Proje Konusu: Veri Depolama ve Sayısal Sistemler
 
-YouTube Linki: 
+YouTube Linki: https://youtu.be/GqRHrf7dhE4
 
 Proje Açıklaması: 
 # 📄 Proje Dokümantasyonu: Çok Fonksiyonlu Taban Dönüştürücü
